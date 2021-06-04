@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import axios from "axios";
 
 export default class PlantList extends Component {
+
+  state = {
+    plants: [],
+    filterTerm: ""
+  };
   // add state with a property called "plants" - initialize as an empty array
 
   // when the component mounts:
@@ -12,14 +17,28 @@ export default class PlantList extends Component {
   componentDidMount() {
     axios.get('http://localhost:3333/plants')
       .then(res => {
-        console.log(res);
-      });
+        this.setState({
+          plants: res.data
+        });
+
+      })
+      .catch(err => console.log(err));
   }
+
+  handleFilter = (e) => {
+    this.setState({
+      ...this.state,
+      filterTerm: e.target.value
+    });
+  };
 
   render() {
     return (
       <main className="plant-list">
-        {this.state?.plants?.map((plant) => (
+        <input placeholder="Search by Name" value={this.state.filterTerm} onChange={this.handleFilter} type="text"/>
+        {this.state?.plants?.filter(plant => {
+          return plant.name.toLowerCase().includes(this.state.filterTerm.toLowerCase());
+        }).map((plant) => (
           <div className="plant-card" key={plant.id} data-testid="plant-card">
             <img className="plant-image" src={plant.img} alt={plant.name} />
             <div className="plant-details">
