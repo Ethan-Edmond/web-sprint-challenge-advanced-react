@@ -1,14 +1,33 @@
 body {
-  background: #0e101c;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
+  margin: 0;
+}
+
+div.light {
+    --main-bg-color: #ffffff;
+    --accent-bg-color: #e0c55b;
+    --accent-color: #06d;
+    --text-color: #303030;
+    --hover-color: #c7af52;
+}
+div.dark {
+    --main-bg-color: #0e101c;
+    --accent-bg-color: #ec5990;
+    --accent-color: #cf0;
+    --text-color: white;
+    --hover-color: #df2e6c;
+}
+
+div.dark, div.light {
+    background: var(--main-bg-color);
 }
 
 .container {
   max-width: 800px;
   margin: 0 auto;
-  border-bottom: 1px solid #cf0;
+  border-bottom: 1px solid var(--accent-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,7 +35,7 @@ body {
 
 h1 {
   font-weight: 100;
-  color: white;
+  color: var(--text-color);
   text-align: center;
   font-size: 2rem;
 }
@@ -26,7 +45,7 @@ h1 {
   top: -8px;
   right: -8px;
   border-radius: 50%;
-  background-color: #ec5990;
+  background-color: var(--accent-bg-color);
   color: #fff;
   display: inline-block;
   padding-left: 6px;
@@ -56,7 +75,7 @@ h1 {
 
 .plant-details {
   padding: 0 32px 0 16px;
-  color: #fff;
+  color: var(--text-color);
   font-weight: 200;
   display: flex;
   flex-flow: column nowrap;
@@ -99,7 +118,7 @@ p {
 .cart > .plant-card {
   width: 100%;
   margin: 0 auto;
-  border-bottom: 1px solid #cf0;
+  border-bottom: 1px solid var(--accent-color);
 }
 
 .cart .plant-image {
@@ -123,11 +142,12 @@ p {
   margin: 0 auto;
   margin-top: 32px;
   padding: 24px;
-  background-color: #cf0;
+  background-color: var(--accent-color);
+  color: var(--main-bg-color);
 }
 
 form {
-  background: #0e101c;
+  background: var(--main-bg-color);
   max-width: 400px;
   margin: 0 auto;
 }
@@ -137,7 +157,7 @@ input {
   box-sizing: border-box;
   width: 100%;
   border-radius: 4px;
-  border: 1px solid white;
+  border: 1px solid var(--text-color);
   padding: 10px 15px;
   margin-bottom: 10px;
   font-size: 14px;
@@ -149,14 +169,14 @@ label {
   display: block;
   margin-bottom: 13px;
   margin-top: 20px;
-  color: white;
+  color: var(--text-color);
   font-size: 14px;
   font-weight: 200;
 }
 
 button {
-  background: #ec5990;
-  color: white;
+  background: var(--accent-bg-color);
+  color: var(--text-color);
   text-transform: uppercase;
   border: none;
   margin-top: 40px;
@@ -167,7 +187,7 @@ button {
 }
 
 button:hover {
-  background: #df2e6c;
+  background: var(--hover-color);
 }
 
 button:active,
@@ -203,7 +223,7 @@ hr {
 }
 
 h2 {
-  color: white;
+  color: var(--text-color);
   font-weight: 200;
 }
 
@@ -217,30 +237,38 @@ button {
 }
 
 pre {
-  color: white;
+  color: var(--text-color);
   white-space: pre;
 }
 
 .steps {
-  color: white;
+  color: var(--text-color);
   display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.steps a {
-  color: #0e101c;
+.steps a, .steps button {
+  color: var(--main-bg-color);
   text-decoration: none;
   font-size: 14px;
   line-height: 2;
 }
 
 .steps li {
-  background: #cf0;
+  background: var(--accent-color);
   padding: 3px 15px;
   margin-right: 15px;
   position: relative;
+}
+
+.steps button {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    text-transform: none;
 }
 
 .steps li:last-child {
@@ -248,6 +276,6 @@ pre {
 }
 
 .active {
-  color: #0e101c;
+  color: var(--main-bg-color);
   border-bottom: 2px solid !important;
 }
